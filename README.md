@@ -1,6 +1,6 @@
 # Likeme II
 
->Tarea 4: Backend de likeme II para el módulo: Backend con Node y Express (G27)
+>Tarea 4: Backend de likeme II (PUT-DELETE) para el módulo: Backend con Node y Express (G27)
 
 ## Características:
 
