@@ -8,6 +8,24 @@
 
 - El sistema permite ejecutar un servidor,  que interactúa con una base de datos de tipo Postgres y proporciona servicios o datos a los clientes que acceden a través de una web de tipo frontend.
 
+- En el servidor se definen rutas y solicitudes `GET`, `POST`, `PUT` y `DELETE` los cuales permiten leer, crear, actualizar y borrar datos de la base de datos a través de llamados proporcionados desde el Frontend. 
+
+- El archivo `index.js` (en la carpeta src) posee las solicitudes a las rutas requeridas:
+
+   ```
+   // Ruta para obtener todos los posts
+   app.get('/posts',getPosts);
+
+   // Ruta para insertar un nuevo post
+   app.post('/posts', postPost);
+
+   //Ruta para aumentar (actualizar) los likes
+   app.put('/posts/like/:id', putPost);
+
+   //Ruta para borrar post
+   app.delete('/posts/:id', deletePosts);
+   ```
+
 - Se genera un archivo llamado .env en el cual se definen variables de entorno para conectar con la base de datos.
   ```
    DB_HOST=localhost

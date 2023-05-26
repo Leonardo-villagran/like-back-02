@@ -2,6 +2,7 @@ const express = require('express');
 require('dotenv').config();
 const cors = require('cors');
 
+
 //Importar callbacks 
 const {getPosts, postPost, putPost, deletePosts} = require('./controllers/callbacks');
 

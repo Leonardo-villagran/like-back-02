@@ -12,7 +12,7 @@ COPY . .
 RUN npm install
 
 # Make port 8080 available to the world outside this container
-EXPOSE 3001
+EXPOSE 3000
 
 # Set environment variables for database connection
 ENV DB_HOST=likeme-db

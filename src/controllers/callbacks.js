@@ -19,6 +19,8 @@ const getPosts = async (req, res) => {
 
         const result = await pool.query('SELECT * FROM posts order by id');
         const posts = result.rows;
+        const fechaHoraActual = new Date();
+        console.log("Posts obtenidos desde la base de datos.", fechaHoraActual)
         res.json(posts);
 
     } catch (err) {
@@ -43,7 +45,8 @@ const postPost = async (req, res) => {
             [titulo, img, descripcion, likes]
         );
         const postId = result.rows[0].id;
-        console.log(result.rows[0]);
+        const fechaHoraActual = new Date();
+        console.log("Post con id:",postId,"ingresado en la base de datos. ",fechaHoraActual);
         res.json({ id: postId, titulo, img, descripcion, likes });
 
     } catch (err) {
@@ -77,6 +80,8 @@ const putPost = async (req, res) => {
     try {
         const result = await pool.query('UPDATE posts SET likes = $1 WHERE id = $2 RETURNING *', [likes, id]);
         const updatedPost = result.rows[0];
+        const fechaHoraActual = new Date();
+        console.log("Post con id:",id,"actualizado en la base de datos con",likes,"likes ", fechaHoraActual)
         res.json(updatedPost);
     } catch (error) {
         res.status(500).json({ error: 'Internal Server Error' });
@@ -96,6 +101,8 @@ const deletePosts = async (req, res) => {
             throw { code: 404, message: "No se puede eliminar, ya que el post no existe." };
         }
         else{
+            const fechaHoraActual = new Date();
+            console.log("Post con id:",id,"eliminado de la base de datos.", fechaHoraActual);
             res.status(204).send("Post eliminado exitosamente.");
         }
     } catch ({ code, message }) {
