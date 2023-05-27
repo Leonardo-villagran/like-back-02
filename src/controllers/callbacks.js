@@ -49,6 +49,7 @@ const postPost = async (req, res) => {
         console.log("Post con id:",postId,"ingresado en la base de datos. ",fechaHoraActual);
         res.json({ id: postId, titulo, img, descripcion, likes });
 
+
     } catch (err) {
         if (err.code==23502){
             res.status(400).json({ message: 'Violación de restricción, ningún dato ingresado debe ser nulo.' });
@@ -92,22 +93,24 @@ const putPost = async (req, res) => {
 
 const deletePosts = async (req, res) => {
     const { id } = req.params;
-
+    const fechaHoraActual = new Date();
+    let result;
     try {
-        
-        result=await pool.query('DELETE FROM posts WHERE id = $1', [id]);
+        result = await pool.query('DELETE FROM posts WHERE id = $1', [id]);
         
         if (result.rowCount === 0) {
-            throw { code: 404, message: "No se puede eliminar, ya que el post no existe." };
+            console.log("Post con id:",id,"no existe de la base de datos.", fechaHoraActual);
+            res.status(404).json({message: `No existe el post con ese id`})
         }
         else{
-            const fechaHoraActual = new Date();
             console.log("Post con id:",id,"eliminado de la base de datos.", fechaHoraActual);
-            res.status(204).send("Post eliminado exitosamente.");
+            res.status(200).json({message: 'Post eliminado exitosamente'});
         }
-    } catch ({ code, message }) {
-        res.status(code).send(message)
+
+    } catch (error) {
+        res.status(500).json({message: `Error al Borrar post.`})
     }
+
 }
 
 // Exportación de los callbacks
