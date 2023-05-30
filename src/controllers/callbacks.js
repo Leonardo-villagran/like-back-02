@@ -1,7 +1,6 @@
 const { Pool } = require('pg');
 require('dotenv').config();
 
-
 // Configura la conexión a la base de datos PostgreSQL a través de variables de entorno
 const pool = new Pool({
     user: process.env.DB_USER,
@@ -110,7 +109,6 @@ const deletePosts = async (req, res) => {
     } catch (error) {
         res.status(500).json({message: `Error al Borrar post.`})
     }
-
 }
 
 // Exportación de los callbacks
