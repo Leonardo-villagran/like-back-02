@@ -10,6 +10,8 @@
 
 - En el servidor se definen rutas y solicitudes `GET`, `POST`, `PUT` y `DELETE` los cuales permiten leer, crear, actualizar y borrar datos de la base de datos a través de llamados proporcionados desde el Frontend. 
 
+- Se agregan los comandos de `try` y `catch`, para maneja posibles errores durante la ejecución de las operaciones.  
+
 - El archivo `index.js` (en la carpeta src) posee las solicitudes a las rutas requeridas:
 
    ```
